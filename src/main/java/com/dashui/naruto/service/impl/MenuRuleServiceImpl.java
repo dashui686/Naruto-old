@@ -7,9 +7,9 @@ import com.dashui.naruto.mapper.MenuRuleMapper;
 import org.springframework.stereotype.Service;
 
 /**
-* @author Administrator
-* @description 针对表【menu_rule】的数据库操作Service实现
-* @createDate 2023-03-19 18:16:22
+* @author 13276
+* @description 针对表【menu_rule(菜单和权限规则表)】的数据库操作Service实现
+* @createDate 2023-03-20 16:18:28
 */
 @Service
 public class MenuRuleServiceImpl extends ServiceImpl<MenuRuleMapper, MenuRule>

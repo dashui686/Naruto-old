@@ -1,33 +1,32 @@
 package com.dashui.naruto.controller;
 
 
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dashui.naruto.core.common.AjaxResult;
 import com.dashui.naruto.core.web.controller.BasicController;
 import com.dashui.naruto.domain.MenuRule;
 import com.dashui.naruto.service.MenuRuleService;
-import jakarta.annotation.Resource;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * (MenuRule)表控制层
+ * 菜单和权限规则表(MenuRule)表控制层
  *
- * @author makejava
- * @since 2023-03-19 18:20:40
+ * @author 132767
+ * @since 2023-03-20 16:21:57
  */
 @RestController
-@RequestMapping("admin/auth.menu")
+@RequiredArgsConstructor
+@RequestMapping("menuRule")
 public class MenuRuleController extends BasicController {
     /**
      * 服务对象
      */
-    @Resource
-    private MenuRuleService menuRuleService;
+    private final MenuRuleService menuRuleService;
 
     /**
      * 分页查询所有数据
@@ -38,8 +37,7 @@ public class MenuRuleController extends BasicController {
      */
     @GetMapping
     public AjaxResult selectAll(Page<MenuRule> page, MenuRule menuRule) {
-        Page<MenuRule> page1 = this.menuRuleService.page(page, new QueryWrapper<>(menuRule));
-        return success();
+        return success(this.menuRuleService.page(page, new QueryWrapper<>(menuRule)));
     }
 
     /**
@@ -50,8 +48,7 @@ public class MenuRuleController extends BasicController {
      */
     @GetMapping("{id}")
     public AjaxResult selectOne(@PathVariable Serializable id) {
-        MenuRule byId = this.menuRuleService.getById(id);
-        return success(byId);
+        return success(this.menuRuleService.getById(id));
     }
 
     /**
@@ -62,7 +59,7 @@ public class MenuRuleController extends BasicController {
      */
     @PostMapping
     public AjaxResult insert(@RequestBody MenuRule menuRule) {
-        return success(this.menuRuleService.save(menuRule));
+        return toAjax(this.menuRuleService.save(menuRule));
     }
 
     /**
@@ -73,7 +70,7 @@ public class MenuRuleController extends BasicController {
      */
     @PutMapping
     public AjaxResult update(@RequestBody MenuRule menuRule) {
-        return success(this.menuRuleService.updateById(menuRule));
+        return toAjax(this.menuRuleService.updateById(menuRule));
     }
 
     /**
@@ -84,7 +81,7 @@ public class MenuRuleController extends BasicController {
      */
     @DeleteMapping
     public AjaxResult delete(@RequestParam("idList") List<Long> idList) {
-        return success(this.menuRuleService.removeByIds(idList));
+        return toAjax(this.menuRuleService.removeByIds(idList));
     }
 }
 

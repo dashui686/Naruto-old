@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dashui.naruto.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.dashui.naruto.domain.User">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="groupId" column="group_id" jdbcType="INTEGER"/>
+            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+            <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+            <result property="gender" column="gender" jdbcType="TINYINT"/>
+            <result property="birthday" column="birthday" jdbcType="DATE"/>
+            <result property="money" column="money" jdbcType="INTEGER"/>
+            <result property="score" column="score" jdbcType="INTEGER"/>
+            <result property="lastLoginTime" column="last_login_time" jdbcType="INTEGER"/>
+            <result property="lastLoginIp" column="last_login_ip" jdbcType="VARCHAR"/>
+            <result property="loginFailure" column="login_failure" jdbcType="TINYINT"/>
+            <result property="joinIp" column="join_ip" jdbcType="VARCHAR"/>
+            <result property="joinTime" column="join_time" jdbcType="INTEGER"/>
+            <result property="motto" column="motto" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="salt" column="salt" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,group_id,user_name,
+        nick_name,email,mobile,
+        avatar,gender,birthday,
+        money,score,last_login_time,
+        last_login_ip,login_failure,join_ip,
+        join_time,motto,password,
+        salt,status,update_time,
+        create_time
+    </sql>
+</mapper>

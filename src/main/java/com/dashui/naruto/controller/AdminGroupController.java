@@ -1,34 +1,32 @@
 package com.dashui.naruto.controller;
 
 
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dashui.naruto.core.common.AjaxResult;
 import com.dashui.naruto.core.web.controller.BasicController;
 import com.dashui.naruto.domain.AdminGroup;
 import com.dashui.naruto.service.AdminGroupService;
-import jakarta.annotation.Resource;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * 管理员分组表(AdminGroup)表控制层
+ * 管理分组表(AdminGroup)表控制层
  *
- * @author makejava
- * @since 2023-03-19 18:20:40
+ * @author 132767
+ * @since 2023-03-20 16:21:56
  */
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("adminGroup")
 public class AdminGroupController extends BasicController {
     /**
      * 服务对象
      */
-    @Resource
-    private AdminGroupService adminGroupService;
+    private final AdminGroupService adminGroupService;
 
     /**
      * 分页查询所有数据
@@ -61,7 +59,7 @@ public class AdminGroupController extends BasicController {
      */
     @PostMapping
     public AjaxResult insert(@RequestBody AdminGroup adminGroup) {
-        return success(this.adminGroupService.save(adminGroup));
+        return toAjax(this.adminGroupService.save(adminGroup));
     }
 
     /**
@@ -72,7 +70,7 @@ public class AdminGroupController extends BasicController {
      */
     @PutMapping
     public AjaxResult update(@RequestBody AdminGroup adminGroup) {
-        return success(this.adminGroupService.updateById(adminGroup));
+        return toAjax(this.adminGroupService.updateById(adminGroup));
     }
 
     /**
@@ -83,7 +81,7 @@ public class AdminGroupController extends BasicController {
      */
     @DeleteMapping
     public AjaxResult delete(@RequestParam("idList") List<Long> idList) {
-        return success(this.adminGroupService.removeByIds(idList));
+        return toAjax(this.adminGroupService.removeByIds(idList));
     }
 }
 

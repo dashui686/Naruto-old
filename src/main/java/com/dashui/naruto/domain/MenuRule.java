@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 /**
- * 
+ * 菜单和权限规则表
  * @TableName menu_rule
  */
 @TableName(value ="menu_rule")
@@ -19,22 +19,19 @@ public class MenuRule implements Serializable {
      * ID
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    private Integer id;
 
     /**
      * 上级菜单
      */
     @TableField(value = "pid")
-    private String pid;
+    private Integer pid;
 
     /**
-     * 类型:
-menu_dir=菜单目录,
-menu=菜单项,
-button=页面按钮
+     * 类型:menu_dir=菜单目录,menu=菜单项,button=页面按钮
      */
     @TableField(value = "type")
-    private String type;
+    private Object type;
 
     /**
      * 标题
@@ -43,7 +40,7 @@ button=页面按钮
     private String title;
 
     /**
-     * 规则名
+     * 规则名称
      */
     @TableField(value = "name")
     private String name;
@@ -61,16 +58,13 @@ button=页面按钮
     private String icon;
 
     /**
-     * 菜单类型:
-tab=选项卡,
-link=链接,
-iframe=Iframe
+     * 菜单类型:tab=选项卡,link=链接,iframe=Iframe
      */
     @TableField(value = "menu_type")
-    private String menuType;
+    private Object menuType;
 
     /**
-     * url
+     * Url
      */
     @TableField(value = "url")
     private String url;
@@ -82,12 +76,16 @@ iframe=Iframe
     private String component;
 
     /**
-     * 缓存:
-0=关闭,
-1=开启
+     * 缓存:0=关闭,1=开启
      */
     @TableField(value = "keepalive")
-    private String keepalive;
+    private Integer keepalive;
+
+    /**
+     * 扩展属性:none=无,add_rules_only=只添加为路由,add_menu_only=只添加为菜单
+     */
+    @TableField(value = "extend")
+    private Object extend;
 
     /**
      * 备注
@@ -96,38 +94,28 @@ iframe=Iframe
     private String remark;
 
     /**
-     * 排序
+     * 权重(排序)
      */
-    @TableField(value = "sort")
-    private String sort;
+    @TableField(value = "weigh")
+    private Integer weigh;
 
     /**
-     * 状态:
-0=禁用,
-1=启用
+     * 状态:0=禁用,1=启用
      */
     @TableField(value = "status")
-    private String status;
-
-    /**
-     * 是否显示:
-0=隐藏
-1=显示
-     */
-    @TableField(value = "display")
-    private String display;
+    private Object status;
 
     /**
      * 更新时间
      */
-    @TableField(value = "update_time")
-    private LocalDateTime updateTime;
+    @TableField(value = "updatetime")
+    private LocalDateTime updatetime;
 
     /**
      * 创建时间
      */
-    @TableField(value = "create_time")
-    private LocalDateTime createTime;
+    @TableField(value = "createtime")
+    private LocalDateTime createtime;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
@@ -155,12 +143,12 @@ iframe=Iframe
             && (this.getUrl() == null ? other.getUrl() == null : this.getUrl().equals(other.getUrl()))
             && (this.getComponent() == null ? other.getComponent() == null : this.getComponent().equals(other.getComponent()))
             && (this.getKeepalive() == null ? other.getKeepalive() == null : this.getKeepalive().equals(other.getKeepalive()))
+            && (this.getExtend() == null ? other.getExtend() == null : this.getExtend().equals(other.getExtend()))
             && (this.getRemark() == null ? other.getRemark() == null : this.getRemark().equals(other.getRemark()))
-            && (this.getSort() == null ? other.getSort() == null : this.getSort().equals(other.getSort()))
+            && (this.getWeigh() == null ? other.getWeigh() == null : this.getWeigh().equals(other.getWeigh()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
-            && (this.getDisplay() == null ? other.getDisplay() == null : this.getDisplay().equals(other.getDisplay()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()));
+            && (this.getUpdatetime() == null ? other.getUpdatetime() == null : this.getUpdatetime().equals(other.getUpdatetime()))
+            && (this.getCreatetime() == null ? other.getCreatetime() == null : this.getCreatetime().equals(other.getCreatetime()));
     }
 
     @Override
@@ -178,12 +166,12 @@ iframe=Iframe
         result = prime * result + ((getUrl() == null) ? 0 : getUrl().hashCode());
         result = prime * result + ((getComponent() == null) ? 0 : getComponent().hashCode());
         result = prime * result + ((getKeepalive() == null) ? 0 : getKeepalive().hashCode());
+        result = prime * result + ((getExtend() == null) ? 0 : getExtend().hashCode());
         result = prime * result + ((getRemark() == null) ? 0 : getRemark().hashCode());
-        result = prime * result + ((getSort() == null) ? 0 : getSort().hashCode());
+        result = prime * result + ((getWeigh() == null) ? 0 : getWeigh().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
-        result = prime * result + ((getDisplay() == null) ? 0 : getDisplay().hashCode());
-        result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
-        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+        result = prime * result + ((getUpdatetime() == null) ? 0 : getUpdatetime().hashCode());
+        result = prime * result + ((getCreatetime() == null) ? 0 : getCreatetime().hashCode());
         return result;
     }
 
@@ -204,12 +192,12 @@ iframe=Iframe
         sb.append(", url=").append(url);
         sb.append(", component=").append(component);
         sb.append(", keepalive=").append(keepalive);
+        sb.append(", extend=").append(extend);
         sb.append(", remark=").append(remark);
-        sb.append(", sort=").append(sort);
+        sb.append(", weigh=").append(weigh);
         sb.append(", status=").append(status);
-        sb.append(", display=").append(display);
-        sb.append(", updateTime=").append(updateTime);
-        sb.append(", createTime=").append(createTime);
+        sb.append(", updatetime=").append(updatetime);
+        sb.append(", createtime=").append(createtime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

@@ -7,28 +7,26 @@ import com.dashui.naruto.core.common.AjaxResult;
 import com.dashui.naruto.core.web.controller.BasicController;
 import com.dashui.naruto.domain.Admin;
 import com.dashui.naruto.service.AdminService;
-import jakarta.annotation.Resource;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * 管理员(Admin)表控制层
+ * 管理员表(Admin)表控制层
  *
- * @author makejava
- * @since 2023-03-19 18:20:40
+ * @author 132767
+ * @since 2023-03-20 16:21:54
  */
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("admin")
 public class AdminController extends BasicController {
-
-
     /**
      * 服务对象
      */
-    @Resource
-    private AdminService adminService;
+    private final AdminService adminService;
 
     /**
      * 分页查询所有数据
@@ -39,8 +37,7 @@ public class AdminController extends BasicController {
      */
     @GetMapping
     public AjaxResult selectAll(Page<Admin> page, Admin admin) {
-        Page<Admin> page1 = this.adminService.page(page, new QueryWrapper<>(admin));
-        return success();
+        return success(this.adminService.page(page, new QueryWrapper<>(admin)));
     }
 
     /**
@@ -51,7 +48,7 @@ public class AdminController extends BasicController {
      */
     @GetMapping("{id}")
     public AjaxResult selectOne(@PathVariable Serializable id) {
-        return AjaxResult.success(this.adminService.getById(id));
+        return success(this.adminService.getById(id));
     }
 
     /**

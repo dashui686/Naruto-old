@@ -5,22 +5,18 @@
 <mapper namespace="com.dashui.naruto.mapper.AdminGroupMapper">
 
     <resultMap id="BaseResultMap" type="com.dashui.naruto.domain.AdminGroup">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="pid" column="pid" jdbcType="BIGINT"/>
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="pid" column="pid" jdbcType="INTEGER"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="status" column="status" jdbcType="CHAR"/>
-            <result property="remark" column="remark" jdbcType="VARCHAR"/>
             <result property="rules" column="rules" jdbcType="VARCHAR"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
-            <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="OTHER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,pid,name,
-        status,remark,rules,
-        create_time,create_by,update_time,
-        update_by
+        rules,create_time,update_time,
+        status
     </sql>
 </mapper>
