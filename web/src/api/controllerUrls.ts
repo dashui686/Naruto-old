@@ -11,7 +11,4 @@ export const userGroup = '/admin/user.group/'
 export const userRule = '/admin/user.rule/'
 export const userScoreLog = '/admin/user.scoreLog/'
 export const userMoneyLog = '/admin/user.moneyLog/'
-export const securityDataRecycle = '/admin/security.dataRecycle/'
-export const securityDataRecycleLog = '/admin/security.dataRecycleLog/'
-export const securitySensitiveData = '/admin/security.sensitiveData/'
-export const securitySensitiveDataLog = '/admin/security.sensitiveDataLog/'
+

@@ -1,11 +1,17 @@
 package com.dashui.naruto.controller;
 
-
+import cn.dev33.satoken.stp.StpUtil;
+import cn.hutool.core.lang.tree.Tree;
+import cn.hutool.core.lang.tree.TreeNodeConfig;
+import cn.hutool.core.lang.tree.TreeUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.dashui.naruto.core.common.AjaxResult;
-import com.dashui.naruto.core.web.controller.BasicController;
+import com.dashui.naruto.common.AjaxResult;
+import com.dashui.naruto.common.TableDataInfo;
+import com.dashui.naruto.config.SiteConfig;
 import com.dashui.naruto.domain.Admin;
+import com.dashui.naruto.domain.Menu;
+import com.dashui.naruto.security.domain.LoginAdmin;
 import com.dashui.naruto.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,15 +20,19 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 管理员表(Admin)表控制层
- *
- * @author 132767
- * @since 2023-03-20 16:21:54
+ * @Author dashui
+ * @user Administrator
+ * @Date 2023/4/2 17:10
+ * @PackageName: com.dashui.naruto.controller
+ * @ClassName: LoginController
+ * @Description: TODO
+ * @Version 1.0
  */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("admin")
+@RequestMapping("/admin/system/admin")
 public class AdminController extends BasicController {
+
     /**
      * 服务对象
      */
@@ -35,9 +45,9 @@ public class AdminController extends BasicController {
      * @param admin 查询实体
      * @return 所有数据
      */
-    @GetMapping
-    public AjaxResult selectAll(Page<Admin> page, Admin admin) {
-        return success(this.adminService.page(page, new QueryWrapper<>(admin)));
+    @GetMapping("list")
+    public TableDataInfo selectAll(Page<Admin> page, Admin admin) {
+        return TableDataInfo.build(this.adminService.page(page, new QueryWrapper<>(admin)));
     }
 
     /**
@@ -48,6 +58,7 @@ public class AdminController extends BasicController {
      */
     @GetMapping("{id}")
     public AjaxResult selectOne(@PathVariable Serializable id) {
+
         return success(this.adminService.getById(id));
     }
 
@@ -59,6 +70,7 @@ public class AdminController extends BasicController {
      */
     @PostMapping
     public AjaxResult insert(@RequestBody Admin admin) {
+        System.out.println(123);
         return toAjax(this.adminService.save(admin));
     }
 
@@ -76,12 +88,12 @@ public class AdminController extends BasicController {
     /**
      * 删除数据
      *
-     * @param idList 主键结合
+     * @param id 主键
      * @return 删除结果
      */
     @DeleteMapping
-    public AjaxResult delete(@RequestParam("idList") List<Long> idList) {
-        return toAjax(this.adminService.removeByIds(idList));
+    public AjaxResult delete(@RequestParam("id") Integer id) {
+        return toAjax(this.adminService.removeById(id));
     }
-}
 
+}

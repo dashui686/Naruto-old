@@ -77,6 +77,7 @@
                                 </el-row>
                             </el-form-item>
                             <el-checkbox v-model="form.keep" :label="t('login.Hold session')" size="default"></el-checkbox>
+                            
                             <el-form-item>
                                 <el-button :loading="form.loading" class="submit-button" round type="primary" size="large" @click="onSubmit(formRef)">
                                     {{ t('login.Sign in') }}
@@ -166,6 +167,7 @@ onMounted(() => {
 
     login('get')
         .then((res) => {
+            console.log(res.data.chptcha);
             state.showCaptcha = res.data.captcha
             nextTick(() => {
                 focusInput()

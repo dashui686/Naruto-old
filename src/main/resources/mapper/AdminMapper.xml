@@ -11,22 +11,28 @@
             <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
             <result property="email" column="email" jdbcType="VARCHAR"/>
             <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
-            <result property="loginFailure" column="login_failure" jdbcType="TINYINT"/>
-            <result property="lastLoginTime" column="last_login_time" jdbcType="INTEGER"/>
+            <result property="lastLoginTime" column="last_login_time" jdbcType="TIMESTAMP"/>
             <result property="lastLoginIp" column="last_login_ip" jdbcType="VARCHAR"/>
             <result property="password" column="password" jdbcType="VARCHAR"/>
-            <result property="salt" column="salt" jdbcType="VARCHAR"/>
             <result property="motto" column="motto" jdbcType="VARCHAR"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
             <result property="status" column="status" jdbcType="OTHER"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+            <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+            <result property="lastLoginAddress" column="last_login_address" jdbcType="VARCHAR"/>
+            <result property="lastLoginEquipment" column="last_login_equipment" jdbcType="VARCHAR"/>
+            <result property="loginFailure" column="login_failure" jdbcType="INTEGER"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,user_name,nick_name,
         avatar,email,mobile,
-        login_failure,last_login_time,last_login_ip,
-        password,salt,motto,
-        create_time,update_time,status
+        last_login_time,last_login_ip,password,
+        motto,create_time,update_time,
+        status,create_by,update_by,
+        last_login_address,last_login_equipment,login_failure,
+        remark
     </sql>
 </mapper>

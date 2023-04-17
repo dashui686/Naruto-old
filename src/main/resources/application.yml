@@ -1,17 +1,26 @@
 server:
   port: 8000
 
-
+site:
+  siteName: 博客站
+  version: v1.0.0
+  record-number: 123213
+  apiUrl: https://lidashui.top
+  cdnUrl: https://www.lidashui.top
+  upload:
+    mode: cloud
+    maxSize: 10485760
+    mineType: jpg,png,bmp,jpeg,gif,webp,zip,rar,xls,xlsx,doc,docx,wav,mp4,mp3,txt
+    saveName: /storage/{topic}/{year}{mon}{day}/{filesha1}{.suffix}
 
 spring:
   application:
     name: naruto
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://39.103.212.11:8787/admin?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    url: jdbc:mysql://127.0.0.1:3306/blogs?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
     username: root
     password: root
-
     # hikari连接池
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -29,3 +38,29 @@ spring:
       max-lifetime: 640000
       #连接测试查询
       connection-test-query: SELECT 1
+
+
+
+############## Sa-Token 配置 (文档: https://sa-token.cc) ##############
+sa-token:
+  # token名称 (同时也是cookie名称)
+  token-name: satoken
+  # token有效期，单位s 默认30天, -1代表永不过期
+  timeout: 604800
+  # token临时有效期 (指定时间内无操作就视为token过期) 单位: 秒
+  activity-timeout: 1440
+  # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时新登录挤掉旧登录)
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
+  is-share: true
+  # token风格
+  token-style: uuid
+  # 是否输出操作日志
+  is-log: true
+
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+  type-aliases-package: com.dashui.naruto.domain

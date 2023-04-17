@@ -95,17 +95,6 @@ export interface TaskItem {
     callback: Function
 }
 
-export interface Terminal {
-    show: boolean
-    showDot: boolean
-    taskList: TaskItem[]
-    packageManager: string
-    showPackageManagerDialog: boolean
-    showConfig: boolean
-    automaticCleanupTask: string
-    port: string
-}
-
 export interface SiteConfig {
     siteName: string
     recordNumber?: string

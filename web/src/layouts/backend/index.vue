@@ -42,6 +42,7 @@ onBeforeMount(() => {
 
 const init = () => {
     index().then((res) => {
+        console.log(res);
         siteConfig.dataFill(res.data.siteConfig)
         adminInfo.dataFill(res.data.adminInfo)
         if (res.data.menus) {

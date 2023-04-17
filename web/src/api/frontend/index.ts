@@ -3,7 +3,7 @@ import { useSiteConfig } from '/@/stores/siteConfig'
 import { useMemberCenter } from '/@/stores/memberCenter'
 import { setTitle } from '/@/utils/common'
 
-const controllerUrl = '/api/index/'
+const controllerUrl = 'index/'
 
 export function index() {
     const siteConfig = useSiteConfig()
@@ -21,5 +21,6 @@ export function index() {
         siteConfig.dataFill(res.data.site)
         memberCenter.setStatus(res.data.openMemberCenter)
         if (!res.data.openMemberCenter) memberCenter.setLayoutMode('Disable')
+        console.log(res);
     })
 }
