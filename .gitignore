@@ -4,6 +4,10 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+
+### jrebel ###
+rebel.xml
+
 ### STS ###
 .apt_generated
 .classpath
