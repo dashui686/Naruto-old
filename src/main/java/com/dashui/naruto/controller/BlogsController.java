@@ -38,8 +38,9 @@ public class BlogsController extends BasicController {
      * @return 所有数据
      */
     @GetMapping("list")
-    public TableDataInfo<Blogs> selectAll(Page<Blogs> page, Blogs blogs) {
-        return TableDataInfo.build(this.blogsService.page(page, new QueryWrapper<>(blogs)));
+    public TableDataInfo selectAll(Blogs blogs) {
+        startPage();
+        return getDataTable(this.blogsService.list(new QueryWrapper<>(blogs)));
     }
 
     /**

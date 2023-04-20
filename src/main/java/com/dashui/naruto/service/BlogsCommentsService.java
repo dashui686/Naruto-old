@@ -1,7 +1,11 @@
 package com.dashui.naruto.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.dashui.naruto.domain.BlogsComments;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
 * @author Administrator
@@ -10,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface BlogsCommentsService extends IService<BlogsComments> {
 
+    List<BlogsComments> getTreeComments(LambdaQueryWrapper<BlogsComments> queryWrapper);
 }

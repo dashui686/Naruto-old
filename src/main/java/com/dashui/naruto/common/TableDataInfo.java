@@ -20,7 +20,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class TableDataInfo<T> implements Serializable {
+public class TableDataInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -31,7 +31,7 @@ public class TableDataInfo<T> implements Serializable {
     /**
      * 列表数据
      */
-    private List<T> rows;
+    private List<?> rows;
 
     /**
      * 消息状态码
@@ -49,13 +49,13 @@ public class TableDataInfo<T> implements Serializable {
      * @param list  列表数据
      * @param total 总记录数
      */
-    public TableDataInfo(List<T> list, long total) {
+    public TableDataInfo(List<?> list, long total) {
         this.rows = list;
         this.total = total;
     }
 
-    public static <T> TableDataInfo<T> build(IPage<T> page) {
-        TableDataInfo<T> rspData = new TableDataInfo<>();
+    public static TableDataInfo build(IPage<?> page) {
+        TableDataInfo rspData = new TableDataInfo();
         rspData.setCode(HttpStatus.HTTP_OK);
         rspData.setMsg("查询成功");
         rspData.setRows(page.getRecords());
@@ -63,8 +63,8 @@ public class TableDataInfo<T> implements Serializable {
         return rspData;
     }
 
-    public static <T> TableDataInfo<T> build(List<T> list) {
-        TableDataInfo<T> rspData = new TableDataInfo<>();
+    public static  TableDataInfo build(List<?> list) {
+        TableDataInfo rspData = new TableDataInfo();
         rspData.setCode(HttpStatus.HTTP_OK);
         rspData.setMsg("查询成功");
         rspData.setRows(list);
@@ -72,8 +72,8 @@ public class TableDataInfo<T> implements Serializable {
         return rspData;
     }
 
-    public static <T> TableDataInfo<T> build() {
-        TableDataInfo<T> rspData = new TableDataInfo<>();
+    public static TableDataInfo build() {
+        TableDataInfo rspData = new TableDataInfo();
         rspData.setCode(HttpStatus.HTTP_OK);
         rspData.setMsg("查询成功");
         return rspData;

@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.dashui.naruto.common.AjaxResult;
 import com.dashui.naruto.common.TableDataInfo;
 import com.dashui.naruto.constant.HttpStatus;
+import com.dashui.naruto.utils.PageUtils;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.WebDataBinder;
@@ -44,6 +46,50 @@ public class BasicController {
         });
     }
 
+
+    /**
+     * 设置请求分页数据
+     */
+    protected void startPage()
+    {
+        PageUtils.startPage();
+    }
+
+    /**
+     * 清理分页的线程变量
+     */
+    protected void clearPage()
+    {
+        PageUtils.clearPage();
+    }
+
+    /**
+     * 响应请求分页数据
+     */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    protected TableDataInfo getDataTable(List<?> list)
+    {
+        TableDataInfo rspData = new TableDataInfo();
+        rspData.setCode(HttpStatus.SUCCESS);
+        rspData.setRows(list);
+        rspData.setMsg("查询成功");
+        rspData.setTotal(new PageInfo(list).getTotal());
+        return rspData;
+    }
+
+    /**
+     * Es响应请求分页数据
+     */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    protected TableDataInfo getDataTable(List<?> list,long total)
+    {
+        TableDataInfo rspData = new TableDataInfo();
+        rspData.setCode(HttpStatus.SUCCESS);
+        rspData.setRows(list);
+        rspData.setMsg("查询成功");
+        rspData.setTotal(total);
+        return rspData;
+    }
 
 
 
@@ -98,9 +144,6 @@ public class BasicController {
     {
         return rows > 0 ? AjaxResult.success() : AjaxResult.error();
     }
-
-
-
 
     /**
      * 响应返回结果

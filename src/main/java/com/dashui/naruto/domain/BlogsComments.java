@@ -1,9 +1,13 @@
 package com.dashui.naruto.domain;
 
-import com.baomidou.mybatisplus.annotation.*;
-
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -58,13 +62,13 @@ public class BlogsComments implements Serializable {
     /**
      * 创建时间
      */
-     @TableField(value = "create_time",fill = FieldFill.INSERT)
+    @TableField(value = "create_time")
     private LocalDateTime createTime;
 
     /**
      * 更新时间
      */
-    @TableField(value = "update_time",fill = FieldFill.UPDATE)
+    @TableField(value = "update_time")
     private LocalDateTime updateTime;
 
     /**
@@ -78,6 +82,10 @@ public class BlogsComments implements Serializable {
      */
     @TableField(value = "ip")
     private String ip;
+
+    @TableField(exist = false)
+    private List<BlogsComments> children ;
+
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
