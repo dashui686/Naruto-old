@@ -14,7 +14,8 @@ import mitt from 'mitt'
 //引入echarts
 import * as echarts from 'echarts';
 //  引入 markdownEditor
-import VueMarkdownEditor from '@/utils/mdEditor';
+import VueMarkdownEditor from '@/utils/markDown/mdEditor';
+
 
 const app = createApp(App)
 
