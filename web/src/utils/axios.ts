@@ -30,7 +30,8 @@ const loadingInstance: LoadingInstance = {
  */
 export const getUrl = (): string => {
     const value: string = import.meta.env.VITE_AXIOS_BASE_URL as string
-    return value == 'getCurrentDomain' ? window.location.protocol + '//' + window.location.host : value
+    const prot: number = import.meta.env.VITE_AXIOS_BASE_PROT as number
+    return value == 'getCurrentDomain' ? window.location.protocol + '//' + window.location.host+':'+prot : value
 }
 
 /*
@@ -111,7 +112,7 @@ function createAxios(axiosConfig: AxiosRequestConfig, options: Options = {}, loa
             options.loading && closeLoading(options) // 关闭loading
             if (response.config.responseType == 'json') {
                 if (response.data && response.data.code !== 200) {
-                    if (response.data.code == 409) {
+                    if (response.data.code == 500) {
                         if (!window.tokenRefreshing) {
                             window.tokenRefreshing = true
                             return refreshToken()

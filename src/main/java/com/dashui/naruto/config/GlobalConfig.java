@@ -34,4 +34,7 @@ public class GlobalConfig {
         // 返回新的CorsFilter
         return new CorsFilter(source);
     }
+
+
+
 }

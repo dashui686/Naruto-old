@@ -131,7 +131,7 @@ onMounted(()=>{
 
     let preview = proxy!.$refs!.preview as any;
     // console.log(preview.$el.querySelectorAll("h1,h2,h3,h4,h5,h6"))
-    console.log(preview.$el.querySelectorAll(".vuepress-markdown-body")[0].querySelectorAll("h1"))
+    // console.log(preview.$el.querySelectorAll(".vuepress-markdown-body")[0].querySelectorAll("h1"))
     // console.log(preview.$el.getElementByclassName("vuepress-markdown-body"))
     const anchors = preview.$el.querySelectorAll('h1,h2,h3,h4,h5,h6');
     titles.value = Array.from(anchors).filter((title:any) => !!title.innerText.trim());
