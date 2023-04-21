@@ -14,7 +14,7 @@
     <name>naruto</name>
     <description>naruto</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>11</java.version>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <fastJson2.version>2.0.25</fastJson2.version>
         <hutool.version>5.8.15</hutool.version>
