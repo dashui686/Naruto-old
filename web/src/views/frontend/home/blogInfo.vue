@@ -35,7 +35,6 @@
                         <div class="comment">
                             <h3>留言</h3>
                             <ul class="comment-list">
-
                                 <li v-for="item in data.comments" class="reply-has">
                                     <img src="@/assets/images/comment-1.jpg" alt="">
                                     <div class="comment-info">
@@ -131,7 +130,9 @@ onMounted(()=>{
     console.log();
 
     let preview = proxy!.$refs!.preview as any;
-    console.log(preview.$el)
+    // console.log(preview.$el.querySelectorAll("h1,h2,h3,h4,h5,h6"))
+    console.log(preview.$el.querySelectorAll(".vuepress-markdown-body")[0].querySelectorAll("h1"))
+    // console.log(preview.$el.getElementByclassName("vuepress-markdown-body"))
     const anchors = preview.$el.querySelectorAll('h1,h2,h3,h4,h5,h6');
     titles.value = Array.from(anchors).filter((title:any) => !!title.innerText.trim());
 

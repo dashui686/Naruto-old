@@ -1,5 +1,8 @@
 // v-md start
 import Prism from 'prismjs';
+// 查看模式
+// import VMdPreviewHtml from '@kangc/v-md-editor/lib/preview-html';
+// import '@kangc/v-md-editor/lib/style/preview-html.css';
 
 // 编辑模式
 import VueMarkdownEditor from '@kangc/v-md-editor';
@@ -8,7 +11,6 @@ import '@kangc/v-md-editor/lib/style/base-editor.css';
 import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
 import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 
-// import VMdPreviewHtml from '@kangc/v-md-editor/lib/preview-html';
 // 行号高亮 ``` java{1,3} 标识 1、3行 高亮
 import createHighlightLinesPlugin from '@kangc/v-md-editor/lib/plugins/highlight-lines/index';
 import '@kangc/v-md-editor/lib/plugins/highlight-lines/highlight-lines.css';
@@ -72,7 +74,7 @@ VueMarkdownEditor.use(createCopyCodePlugin());
 // VueMarkdownEditor.use(createAlignPlugin());
 VueMarkdownEditor.use(createTodoListPlugin());
 // VueMarkdownEditor.use(createMermaidPlugin());
-  
+
 export default VueMarkdownEditor;
 
 

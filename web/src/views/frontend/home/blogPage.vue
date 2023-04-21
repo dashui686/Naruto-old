@@ -59,6 +59,7 @@ import Nav from './profile/nav.vue';
 import {blogs} from "@/api/frontend/homePage"
 import { reject } from 'lodash';
 import { setTimeOutAsync } from '@/utils/Thread';
+import { ElNotification } from 'element-plus';
 
 onBeforeMount(()=>{
     getLIst();
