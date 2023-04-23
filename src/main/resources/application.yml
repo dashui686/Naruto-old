@@ -38,9 +38,24 @@ spring:
       max-lifetime: 640000
       #连接测试查询
       connection-test-query: SELECT 1
+  mail:
+    host: "smtp.163.com" # 发件服务器地址,不同邮件平台地址不同
+    port: 25 #常用邮件端口25、109、110、143、465、995、993、994 如果开启了SSL安全则使用对应的端口号，25为非加密端口号
+    username: li1327674904@163.com #发送邮件的账号
+    password: NTMFUQUOQZDSWSZH #发送邮件账号的授权码,这里的授权码不是验证码.需要到邮箱
+    default-encoding: utf-8 #设置编码
+    properties: # 设置邮件超时时间防止服务器阻塞
+      timeout: 5000
+      connection-timeout: 5000
+      write-timeout: 5000
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5 #类型
+    prefix: classpath:/templates/ #模板存放的位置
+    suffix: .html #模板的后缀
 
 
-
+#  NTMFUQUOQZDSWSZH
 ############## Sa-Token 配置 (文档: https://sa-token.cc) ##############
 sa-token:
   # token名称 (同时也是cookie名称)

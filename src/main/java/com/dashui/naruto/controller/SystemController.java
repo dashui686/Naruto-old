@@ -25,7 +25,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin")
-public class SystemController extends BasicController {
+public class SystemController extends BaseController {
 
     private final SiteConfig siteConfig;
     private final AdminService adminService;

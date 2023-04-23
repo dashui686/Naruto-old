@@ -97,6 +97,7 @@ import { blog } from '@/api/frontend/homePage';
 import { generateCodeFrame } from '@vue/shared';
 import { UserFilled,Comment,Timer } from '@element-plus/icons-vue';
 import {ComponentInternalInstance} from "vue"
+import { setTitle } from '@/utils/common';
 
 const {proxy} = getCurrentInstance() as ComponentInternalInstance;
 const route = useRoute();
@@ -119,11 +120,17 @@ const data =ref<any>({
 });
 
 const titles = ref<any>([]);
-
 onBeforeMount(()=>{
     blog(route.params.id).then(res=>{
+        
         data.value = res.data;
+        setTitle(res.data.blog.title)
+
     })
+    
+
+
+
 })
 
 onMounted(()=>{

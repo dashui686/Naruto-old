@@ -22,6 +22,8 @@ rebel.xml
 *.iws
 *.iml
 *.ipr
+*.log
+application.yml
 
 ### NetBeans ###
 /nbproject/private/

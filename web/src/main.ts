@@ -8,7 +8,7 @@ import pinia from '@/stores/index'
 import '@/styles/index.scss'
 import 'element-plus/dist/index.css'
 // icon
-import { registerIcons } from '@/utils/common'
+import { loadCss, registerIcons } from '@/utils/common'
 // mitt
 import mitt from 'mitt'
 //引入echarts
@@ -16,6 +16,7 @@ import * as echarts from 'echarts';
 //  引入 markdownEditor
 import VueMarkdownEditor from '@/utils/markDown/mdEditor';
 
+loadCss("//at.alicdn.com/t/c/font_3985254_zgokuvy04c.css");
 
 const app = createApp(App)
 

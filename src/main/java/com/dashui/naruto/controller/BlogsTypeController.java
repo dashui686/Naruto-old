@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * 博客类型表(BlogsType)表控制层
@@ -22,7 +21,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("admin/blog/type")
-public class BlogsTypeController extends BasicController {
+public class BlogsTypeController extends BaseController {
     /**
      * 服务对象
      */

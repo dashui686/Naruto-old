@@ -1,23 +1,15 @@
 package com.dashui.naruto.controller;
 
-import cn.dev33.satoken.stp.StpUtil;
-import cn.hutool.core.lang.tree.Tree;
-import cn.hutool.core.lang.tree.TreeNodeConfig;
-import cn.hutool.core.lang.tree.TreeUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dashui.naruto.common.AjaxResult;
 import com.dashui.naruto.common.TableDataInfo;
-import com.dashui.naruto.config.SiteConfig;
 import com.dashui.naruto.domain.Admin;
-import com.dashui.naruto.domain.Menu;
-import com.dashui.naruto.security.domain.LoginAdmin;
 import com.dashui.naruto.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @Author dashui
@@ -31,7 +23,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/system/admin")
-public class AdminController extends BasicController {
+public class AdminController extends BaseController {
 
     /**
      * 服务对象

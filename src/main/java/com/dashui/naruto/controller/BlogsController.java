@@ -1,9 +1,7 @@
 package com.dashui.naruto.controller;
 
 
-import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dashui.naruto.common.AjaxResult;
 import com.dashui.naruto.common.TableDataInfo;
 import com.dashui.naruto.domain.Blogs;
@@ -24,7 +22,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("admin/blog/blogs")
-public class BlogsController extends BasicController {
+public class BlogsController extends BaseController {
     /**
      * 服务对象
      */

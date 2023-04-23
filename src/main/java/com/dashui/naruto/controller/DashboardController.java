@@ -21,7 +21,7 @@ import java.util.Map;
 @RequestMapping
 @RestController
 @RequiredArgsConstructor
-public class DashboardController extends BasicController {
+public class DashboardController extends BaseController {
 
     @RequestMapping("/admin/Dashboard/dashboard")
     public AjaxResult adminDashboard(){

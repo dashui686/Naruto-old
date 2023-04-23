@@ -1,7 +1,6 @@
 package com.dashui.naruto.controller;
 
 import com.alibaba.fastjson2.util.DateUtils;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.dashui.naruto.common.AjaxResult;
 import com.dashui.naruto.common.TableDataInfo;
 import com.dashui.naruto.constant.HttpStatus;
@@ -25,7 +24,7 @@ import java.util.List;
  * @Description: TODO
  * @Version 1.0
  */
-public class BasicController {
+public class BaseController {
 
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 

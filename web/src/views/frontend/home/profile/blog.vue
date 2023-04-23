@@ -40,18 +40,20 @@
                         </template>
                         <template #default>
                             <div>
-                                <el-image :src="'https://lidashui.oss-cn-beijing.aliyuncs.com/blogConver.png'">
-                                    <template #error>
-                                        <div class="image-slot">
-                                            <el-icon><icon-picture /></el-icon>
-                                        </div>
-                                    </template>
-                                </el-image>
-                                <div class="blog-item-text">
-                                    <h3>{{item.title}}</h3>
-                                    <p>{{ item.description }}</p>
-                                    <h5>{{ item.createTime }} / 由{{item.createBy}}发布</h5>
-                                </div>
+                                <router-link :to="{path:'/blogInfo/'+item.id}"  >
+                                    <el-image :src="'https://lidashui.oss-cn-beijing.aliyuncs.com/blogConver.png'">
+                                        <template #error>
+                                            <div class="image-slot">
+                                                <el-icon><icon-picture /></el-icon>
+                                            </div>
+                                        </template>
+                                    </el-image>
+                                    <div class="blog-item-text">
+                                        <h3>{{item.title}}</h3>
+                                        <p>{{ item.description }}</p>
+                                        <h5>{{ item.createTime }} / 由{{item.createBy}}发布</h5>
+                                    </div>
+                                </router-link>
                             </div>
 
                         </template>

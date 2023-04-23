@@ -1,6 +1,9 @@
 package com.dashui.naruto;
 
-import cn.hutool.core.lang.tree.*;
+
+import cn.hutool.core.lang.tree.Tree;
+import cn.hutool.core.lang.tree.TreeNodeConfig;
+import cn.hutool.core.lang.tree.TreeUtil;
 import com.alibaba.fastjson2.JSON;
 import com.dashui.naruto.domain.Menu;
 import com.dashui.naruto.service.MenuService;
@@ -8,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest

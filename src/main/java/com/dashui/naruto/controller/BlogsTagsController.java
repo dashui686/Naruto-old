@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * 博客标签表(BlogsTags)表控制层
@@ -22,7 +21,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("admin/blog/tag")
-public class BlogsTagsController extends BasicController {
+public class BlogsTagsController extends BaseController {
     /**
      * 服务对象
      */

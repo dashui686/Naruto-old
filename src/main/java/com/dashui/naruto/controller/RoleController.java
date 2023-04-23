@@ -4,13 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dashui.naruto.common.AjaxResult;
 import com.dashui.naruto.common.TableDataInfo;
-import com.dashui.naruto.domain.Admin;
 import com.dashui.naruto.domain.Role;
-import com.dashui.naruto.service.AdminService;
 import com.dashui.naruto.service.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.yaml.snakeyaml.constructor.BaseConstructor;
 
 import java.io.Serializable;
 
@@ -26,7 +23,7 @@ import java.io.Serializable;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/system/role")
-public class RoleController extends BasicController {
+public class RoleController extends BaseController {
 
 
     /**
