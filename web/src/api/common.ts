@@ -72,42 +72,6 @@ export function fileUpload(fd: FormData, params: anyObj = {}, forceLocal = false
     }) as ApiPromise
 }
 
-/**
- * 生成文件后缀icon的svg图片
- * @param suffix 后缀名
- * @param background 背景色,如:rgb(255,255,255)
- */
-export function buildSuffixSvgUrl(suffix: string, background = '') {
-    const adminInfo = useAdminInfo()
-    return (
-        getUrl() +
-        (isAdminApp() ? adminBuildSuffixSvgUrl : apiBuildSuffixSvgUrl) +
-        '?batoken=' +
-        adminInfo.getToken() +
-        '&suffix=' +
-        suffix +
-        (background ? '&background=' + background : '') +
-        '&server=1'
-    )
-}
-
-/**
- * 获取地区数据
- */
-export function getArea(values: number[]) {
-    const params: { province?: number; city?: number } = {}
-    if (values[0]) {
-        params.province = values[0]
-    }
-    if (values[1]) {
-        params.city = values[1]
-    }
-    return createAxios({
-        url: isAdminApp() ? adminAreaUrl : apiAreaUrl,
-        method: 'GET',
-        params: params,
-    })
-}
 
 /**
  * 发送短信
@@ -167,49 +131,6 @@ export function postClearCache(type: string) {
     )
 }
 
-/**
- * 远程下拉框数据获取
- */
-export function getSelectData(remoteUrl: string, q: string, params: {}) {
-    return createAxios({
-        url: remoteUrl,
-        method: 'get',
-        params: Object.assign(params, {
-            select: true,
-            quick_search: q,
-        }),
-    })
-}
-
-export function buildCaptchaUrl() {
-    return getUrl() + captchaUrl + '?server=1'
-}
-
-export function getTablePk(table: string) {
-    return createAxios({
-        url: getTablePkUrl,
-        method: 'get',
-        params: {
-            table: table,
-        },
-    })
-}
-
-/**
- * 获取数据表的字段
- * @param table 数据表名
- * @param clean 只要干净的字段注释（只要字段标题）
- */
-export function getTableFieldList(table: string, clean = true) {
-    return createAxios({
-        url: getTableFieldListUrl,
-        method: 'get',
-        params: {
-            table: table,
-            clean: clean ? 1 : 0,
-        },
-    })
-}
 
 export function refreshToken(): ApiPromise {
     const adminInfo = useAdminInfo()
@@ -221,81 +142,4 @@ export function refreshToken(): ApiPromise {
             refresh_token: isAdminApp() ? adminInfo.getToken('refresh') : userInfo.getToken('refresh'),
         },
     }) as ApiPromise
-}
-
-/**
- * 生成一个控制器的：增、删、改、查、排序的操作url
- */
-export class baTableApi {
-    private controllerUrl
-    public actionUrl
-
-    constructor(controllerUrl: string) {
-        this.controllerUrl = controllerUrl
-        this.actionUrl = new Map([
-            ['index', controllerUrl + 'index'],
-            ['add', controllerUrl + 'add'],
-            ['edit', controllerUrl + 'edit'],
-            ['del', controllerUrl + 'del'],
-            ['sortable', controllerUrl + 'sortable'],
-        ])
-    }
-
-    index(filter: anyObj = {}): ApiPromise<TableDataInfo> {
-        return createAxios({
-            url: this.actionUrl.get('index'),
-            method: 'get',
-            params: filter,
-        }) as ApiPromise
-    }
-
-    edit(params: anyObj) {
-        return createAxios({
-            url: this.actionUrl.get('edit'),
-            method: 'get',
-            params: params,
-        })
-    }
-
-    del(ids: string[]) {
-        return createAxios(
-            {
-                url: this.actionUrl.get('del'),
-                method: 'DELETE',
-                params: {
-                    ids: ids,
-                },
-            },
-            {
-                showSuccessMessage: true,
-            }
-        )
-    }
-
-    postData(action: string, data: anyObj) {
-        if (!this.actionUrl.has(action)) {
-            throw new Error('action does not exist')
-        }
-        return createAxios(
-            {
-                url: this.actionUrl.get(action),
-                method: 'post',
-                data: data,
-            },
-            {
-                showSuccessMessage: true,
-            }
-        )
-    }
-
-    sortableApi(id: number, targetId: number) {
-        return createAxios({
-            url: this.actionUrl.get('sortable'),
-            method: 'post',
-            data: {
-                id: id,
-                targetId: targetId,
-            },
-        })
-    }
 }

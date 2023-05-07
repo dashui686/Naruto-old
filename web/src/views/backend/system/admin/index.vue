@@ -147,13 +147,13 @@
   
   // 表单验证规则
   const rules = reactive<FormRules>({
-      title: [
-          { required: true, message: '请输入标题', trigger: 'blur' },
+      userName: [
+          { required: true, message: '请输入账户名', trigger: 'blur' },
       ],
-      path: [
+      email: [
           {
           required: true,
-          message: '请输入路径',
+          message: '请输入邮箱',
           trigger: 'blur',
           },
       ],

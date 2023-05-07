@@ -1,6 +1,6 @@
 <template>
-    <div class="loginPage" id="bubble">
-        <div class="login">
+    <div class="loginPage" id="bubble" @keydown.enter="onSubmit(formRef)">
+        <div class="login" v-loading="form.loading" >
             <div class="login-header">
                 <img src="@/assets/login-header.png" />
             </div>
@@ -90,21 +90,21 @@ const form = reactive({
 
 // 表单验证规则
 const rules = reactive<FormRules>({
-    name: [
-        { required: true, message: 'Please input Activity name', trigger: 'blur' },
-        { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
+    username: [
+        { required: true, message: '请输入用户名', trigger: 'blur' },
+        { min: 3, max: 15, message: '用户名长度为3-15', trigger: 'blur' },
     ],
-    region: [
+    password: [
         {
         required: true,
-        message: 'Please select Activity zone',
+        message: '请输入密码',
         trigger: 'change',
         },
     ],
-    count: [
+    captcha: [
         {
         required: true,
-        message: 'Please select Activity count',
+        message: '请输入验证码',
         trigger: 'change',
         },
     ],
@@ -153,6 +153,7 @@ const onSubmit = (formEl: InstanceType<typeof ElForm> | undefined) => {
                         message: res.msg,
                         type: 'success',
                     })
+                    // router.push({ path: res.data.routePath })
                     router.push({ path: res.data.routePath })
                 })
                 .catch(() => {

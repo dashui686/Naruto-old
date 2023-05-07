@@ -30,10 +30,10 @@
                     <div id="form-chack"></div>
                     <!-- Contact Form -->
                     <form  id="contact-form" autocomplete="off" @submit.prevent="submit" >
-                        <input type="text" name="name" id="name"  placeholder="你的名字*">
-                        <input type="email" name="email" id="email"  placeholder="你的邮件*">
+                        <input type="text" name="name"  id="name"  placeholder="你的名字*">
+                        <input type="email" name="email"  id="email"  placeholder="你的邮件*">
                         <div class="send-btn-div">
-                            <textarea id="massage" name="massage"  placeholder="您的按摩*"></textarea>
+                            <textarea id="massage" name="massage"   placeholder="您的按摩*"></textarea>
                             <button  class="send-btn" type="submit" ><i class="iconfont icon-zhifeiji"></i> </button>
                         </div>
                     </form>
@@ -46,6 +46,8 @@
 <script setup lang="ts">
 import { ta } from 'element-plus/es/locale';
 import {concat} from "@/api/frontend/homePage/index"
+import { getCurrentInstance } from 'vue';
+import { ElLoading,ElNotification } from 'element-plus';
 
 const submit = (target:Event)=>{
     const name = document.getElementById("name") as any;
@@ -68,15 +70,22 @@ const submit = (target:Event)=>{
     fromData.append("name",name.value)
     fromData.append("email",email.value)
     fromData.append("message",message.value)
+    
     ElNotification({
         type: 'success',
-        message: "已提交",
+        message: "提交成功",
     })
+    // const loadingInstance1 = ElLoading.service({ fullscreen: true,text:"发送中....",body:true,lock:true })
     concat(fromData).then(res=>{
+        name.value = "";
+        email.value = "";
+        message.value = "";
         ElNotification({
             type: 'success',
             message: "发送成功",
         })
+    }).finally(()=>{
+        // loadingInstance1.close();
     })
 
     return false;

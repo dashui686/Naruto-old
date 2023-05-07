@@ -16,6 +16,13 @@ public class HttpStatus
      */
     public static final int BAD_REQUEST = 400;
 
+
+    /**
+     * 未授权
+     */
+    public static final int NO_LOGIN = 502;
+
+
     /**
      * 未授权
      */

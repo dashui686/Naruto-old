@@ -12,7 +12,6 @@ import { isAdminApp } from '@/utils/common'
  * @param to — 导航位置，同 router.push
  */
 export const routePush = async (to: RouteLocationRaw) => {
-    console.log(to)
     try {
         const failure = await router.push(to)
         if (isNavigationFailure(failure, NavigationFailureType.aborted)) {

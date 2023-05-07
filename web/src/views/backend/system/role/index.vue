@@ -54,11 +54,11 @@
                   :style="'width: calc(100% - ' + formLabelWidth! / 2 + 'px)'"
               >
               <el-form :model="form" :rules="rules" ref="ruleFormRef">
-                <el-form-item label="管理员账户" prop="name" :label-width="formLabelWidth">
-                  <el-input v-model="form.name" autocomplete="off" placeholder="请输入登录账户" />
+                <el-form-item label="角色名称" prop="name" :label-width="formLabelWidth">
+                  <el-input v-model="form.name" autocomplete="off" placeholder="请输入角色名称" />
                 </el-form-item>
-                <el-form-item label="管理员昵称" prop="roleCode" :label-width="formLabelWidth">
-                  <el-input v-model="form.roleCode" autocomplete="off" placeholder="请输入菜单标题" />
+                <el-form-item label="角色编码" prop="roleCode" :label-width="formLabelWidth">
+                  <el-input v-model="form.roleCode" autocomplete="off" placeholder="请输入角色编码" />
                 </el-form-item>
                 <el-form-item label="管理员状态" prop="status" :label-width="formLabelWidth">
                   <el-radio-group v-model="form.status">
@@ -112,13 +112,13 @@
   
   // 表单验证规则
   const rules = reactive<FormRules>({
-      title: [
-          { required: true, message: '请输入标题', trigger: 'blur' },
+      roleCode: [
+          { required: true, message: '请输入角色编码', trigger: 'blur' },
       ],
-      path: [
+      name: [
           {
           required: true,
-          message: '请输入路径',
+          message: '请输入角色名称',
           trigger: 'blur',
           },
       ],

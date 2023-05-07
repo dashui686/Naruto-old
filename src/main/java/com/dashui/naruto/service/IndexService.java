@@ -1,6 +1,6 @@
 package com.dashui.naruto.service;
 
-import com.dashui.naruto.mail.domain.SendEmailEntity;
+import com.dashui.naruto.domain.SendEmailEntity;
 
 /**
  * @Author dashui

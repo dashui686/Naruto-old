@@ -12,7 +12,7 @@
         <a href="https://gitee.com/lidashui" target="_blank">
             <i class="iconfont icon-gitee-fill-round"></i> 
         </a>
-        <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=26198573&website=www.oicqzone.com" target="_blank">
+        <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1327674904&website=www.oicqzone.com" target="_blank">
             <i class="iconfont icon-QQ"></i> 
         </a>
         <a href="mailto:1327674904@qq.com" target="_blank">

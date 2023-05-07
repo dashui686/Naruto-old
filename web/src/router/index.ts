@@ -11,7 +11,7 @@ import { isAdminApp } from '@/utils/common'
 import { uniq } from 'lodash-es'
 
 const router = createRouter({
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes: staticRoutes,
     scrollBehavior(to, from, savedPosition) {
 
@@ -23,7 +23,6 @@ const router = createRouter({
         //      behavior: 'smooth',
         //     top: -10,
         //   }
-
         if (to.hash) {
             return { el: to.hash ,behavior: 'smooth',} 
         } else if (savedPosition) {

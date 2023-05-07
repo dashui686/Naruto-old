@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dashui.naruto.common.AjaxResult;
 import com.dashui.naruto.common.TableDataInfo;
-import com.dashui.naruto.domain.Role;
-import com.dashui.naruto.service.RoleService;
+import com.dashui.naruto.domain.SystemRole;
+import com.dashui.naruto.service.SystemRoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,13 +23,13 @@ import java.io.Serializable;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/system/role")
-public class RoleController extends BaseController {
+public class SystemRoleController extends BaseController {
 
 
     /**
      * 服务对象
      */
-    private final RoleService roleService;
+    private final SystemRoleService roleService;
 
     /**
      * 分页查询所有数据
@@ -39,7 +39,7 @@ public class RoleController extends BaseController {
      * @return 所有数据
      */
     @GetMapping("list")
-    public TableDataInfo selectAll(Page<Role> page, Role admin) {
+    public TableDataInfo selectAll(Page<SystemRole> page, SystemRole admin) {
         return TableDataInfo.build(this.roleService.page(page, new QueryWrapper<>(admin)));
     }
 
@@ -62,7 +62,7 @@ public class RoleController extends BaseController {
      * @return 新增结果
      */
     @PostMapping
-    public AjaxResult insert(@RequestBody Role admin) {
+    public AjaxResult insert(@RequestBody SystemRole admin) {
         System.out.println(123);
         return toAjax(this.roleService.save(admin));
     }
@@ -74,7 +74,7 @@ public class RoleController extends BaseController {
      * @return 修改结果
      */
     @PutMapping
-    public AjaxResult update(@RequestBody Role admin) {
+    public AjaxResult update(@RequestBody SystemRole admin) {
         return toAjax(this.roleService.updateById(admin));
     }
 

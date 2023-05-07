@@ -20,7 +20,7 @@ public class Demo {
         }
     }
 
-    public static String calculate(int a, int b){
+    public static String calculate(int a, int b)  {
         try (Context context = Context.getCurrentContext()) {
             context.addCallStack("calculate");
             int sum = add(a, b);
@@ -32,7 +32,7 @@ public class Demo {
         }
     }
 
-    public static int add(int a, int b) {
+    public static int add(int a, int b)  {
         try (Context context = Context.getCurrentContext()) {
             context.addCallStack("add");
             return a + b;
@@ -45,12 +45,14 @@ public class Demo {
         try (Context context = Context.getCurrentContext()) {
             context.addCallStack("multiply");
             return a * b;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         } finally {
             Context.getCurrentContext().removeCallStack("multiply");
         }
     }
 
-    public static int divide(int a, int b)  {
+    public static int divide(int a, int b) throws BaseException {
         try (Context context = Context.getCurrentContext()) {
             context.addCallStack("divide");
             if (b == 0) {

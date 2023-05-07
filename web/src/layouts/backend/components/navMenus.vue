@@ -51,7 +51,7 @@
                     <el-avatar :size="25" fit="fill">
                         <img :src="adminInfo.avatar" alt="" />
                     </el-avatar>
-                    <div class="admin-name">{{ adminInfo.nickname }}</div>
+                    <div class="admin-name">{{ adminInfo.nickName }}</div>
                 </div>
             </template>
             <div>
@@ -60,8 +60,8 @@
                         <img :src="adminInfo.avatar" alt="" />
                     </el-avatar>
                     <div class="admin-info-other">
-                        <div class="admin-info-name">{{ adminInfo.nickname }}</div>
-                        <div class="admin-info-lasttime">{{ adminInfo.lastlogintime }}</div>
+                        <div class="admin-info-name">{{ adminInfo.nickName }}</div>
+                        <!-- <div class="admin-info-lasttime">{{ adminInfo.lastlogintime }}</div> -->
                     </div>
                 </div>
                 <div class="admin-info-footer">

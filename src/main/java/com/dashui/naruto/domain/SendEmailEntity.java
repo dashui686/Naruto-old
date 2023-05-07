@@ -1,4 +1,4 @@
-package com.dashui.naruto.mail.domain;
+package com.dashui.naruto.domain;
 
 import lombok.Data;
 import org.thymeleaf.context.Context;

@@ -6,7 +6,7 @@
                     <div class="welcome suspension">
                         <img class="welcome-img" :src="headerSvg" alt="" />
                         <div class="welcome-text">
-                            <div class="welcome-title">{{ adminInfo.nickname + ',' + getGreet() }}</div>
+                            <div class="welcome-title">{{ adminInfo.nickName + ',' + getGreet() }}</div>
                             <div class="welcome-note">{{ state.remark }}</div>
                         </div>
                     </div>

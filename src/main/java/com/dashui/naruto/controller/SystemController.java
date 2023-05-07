@@ -1,13 +1,21 @@
 package com.dashui.naruto.controller;
 
+import cn.dev33.satoken.context.SaHolder;
+import cn.dev33.satoken.exception.NotLoginException;
 import cn.dev33.satoken.stp.StpUtil;
+import cn.hutool.core.util.ObjectUtil;
 import com.dashui.naruto.common.AjaxResult;
 import com.dashui.naruto.config.SiteConfig;
 import com.dashui.naruto.domain.Admin;
 import com.dashui.naruto.domain.Menu;
-import com.dashui.naruto.security.domain.LoginAdmin;
-import com.dashui.naruto.service.AdminService;
-import com.dashui.naruto.service.MenuService;
+import com.dashui.naruto.domain.SystemAdmin;
+import com.dashui.naruto.domain.SystemMenu;
+import com.dashui.naruto.satoken.AdminDetailService;
+import com.dashui.naruto.satoken.domain.LoginAdminVo;
+import com.dashui.naruto.satoken.domain.LoginBody;
+import com.dashui.naruto.service.SystemAdminService;
+import com.dashui.naruto.service.SystemMenuService;
+import com.dashui.naruto.utils.ServletUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,12 +36,19 @@ import java.util.List;
 public class SystemController extends BaseController {
 
     private final SiteConfig siteConfig;
-    private final AdminService adminService;
-    private final MenuService menuService;
+
+    private final SystemAdminService adminService;
+
+    private final SystemMenuService menuService;
+
+    private final AdminDetailService adminDetailService;
+
     @GetMapping("index")
     public AjaxResult index(){
-        Admin byId = adminService.getById(1);
-        List<Menu> list = menuService.getCurrentMenu();
+        Integer loginId = Integer.parseInt(StpUtil.getLoginId().toString()) ;
+        System.out.println(loginId);
+        SystemAdmin byId = adminService.getById(loginId);
+        List<SystemMenu> list = menuService.getCurrentTreeMenu(loginId);
         return success()
                 .data("siteConfig",siteConfig)
                 .data("adminInfo",byId)
@@ -48,20 +63,20 @@ public class SystemController extends BaseController {
 
     @GetMapping("login")
     public AjaxResult loginCheck(){
-
         return success().data("siteConfig",siteConfig);
     }
 
 
 
     @PostMapping("login")
-    public AjaxResult doLogin(@RequestBody LoginAdmin login){
-        // 此处仅作模拟示例，真实项目需要从数据库中查询数据进行比对
-        if("123".equals(login.getUsername()) && "123".equals(login.getPassword())) {
-            StpUtil.login(10001);
-            return success();
+    public AjaxResult doLogin(@RequestBody LoginBody loginBody){
+        try {
+            LoginAdminVo login = adminDetailService.login(loginBody);
+            login.setSaToken(StpUtil.getTokenInfo().getTokenValue());
+            return success().data("userInfo",login).data("routePath","/admin");
+        } catch (Exception e) {
+            return error(e.getMessage());
         }
-        return error();
     }
 
 }

@@ -139,7 +139,6 @@ const onContextmenuItem = async (item: ContextmenuItemClickEmitArg) => {
     switch (name) {
         case 'refresh':
             proxy.eventBus.emit('onTabViewRefresh', menu)
-            console.log(123);
             break
         case 'close':
             closeTab(menu)

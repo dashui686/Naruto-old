@@ -17,7 +17,7 @@ export function blogs(data:anyObj) :TablePromise {
     return createAxios({
         url: controllerUrl + 'index/blogs',
         method: 'get',
-        data
+        params:data
     }) as TablePromise
 }
 

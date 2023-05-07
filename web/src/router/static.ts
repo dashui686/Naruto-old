@@ -22,14 +22,14 @@ const staticRoutes: Array<RouteRecordRaw> = [
         path: '/blogPage',
         name: 'blogPage',
         //使用import可以路由懒加载，如果不使用，太多组件一起加载会造成白屏
-        component: () => import('../views/frontend/home/blogPage.vue')
+        component: () => import('../views/frontend/blog/blogPage.vue')
     },
     {
         path: '/blogInfo/:id(\\d+)',
         name: 'blogInfo',
         sensitive: true ,
         //使用import可以路由懒加载，如果不使用，太多组件一起加载会造成白屏
-        component: () => import('@/views/frontend/home/blogInfo.vue')
+        component: () => import('@/views/frontend/blog/blogInfo.vue')
     },
     {
         // 管理员登录页

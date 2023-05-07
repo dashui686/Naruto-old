@@ -11,4 +11,4 @@ declare module '@kangc/v-md-editor/lib/plugins/todo-list/index';
 // 行号
 declare module '@kangc/v-md-editor/lib/plugins/line-number/index';
 
-declare module '@kangc/v-md-editor/lib/preview-html';
+declare module '@kangc/v-md-editor/lib/preview';

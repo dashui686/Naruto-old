@@ -1,6 +1,9 @@
 server:
   port: 8000
-
+#  ssl:
+#    key-store: classpath:cert/9706917_lidashui.top.pfx
+#    key-store-password: 73pbuqb0
+#    key-store-type: PKCS12
 site:
   siteName: 博客站
   version: v1.0.0
@@ -27,7 +30,7 @@ spring:
       #最大连接数，小于等于0会被重置为默认值10；大于零小于1会被重置为minimum-idle的值
       maximum-pool-size: 10
       #最小空闲连接，默认值 10，小于0或大于maximum-pool-size，都会重置为maximum-pool-size
-      minimum-idle: 2
+      minimum-idle: 10
       #连接超时时间:毫秒，小于250毫秒，否则被重置为默认值30秒
       connection-timeout: 60000
       #空闲连接超时时间，默认值600000ms（10分钟），大于等于max-lifetime且max-lifetime>0，会被重置为0；
@@ -38,21 +41,25 @@ spring:
       max-lifetime: 640000
       #连接测试查询
       connection-test-query: SELECT 1
-  mail:
-    host: "smtp.163.com" # 发件服务器地址,不同邮件平台地址不同
-    port: 25 #常用邮件端口25、109、110、143、465、995、993、994 如果开启了SSL安全则使用对应的端口号，25为非加密端口号
-    username: li1327674904@163.com #发送邮件的账号
-    password: NTMFUQUOQZDSWSZH #发送邮件账号的授权码,这里的授权码不是验证码.需要到邮箱
-    default-encoding: utf-8 #设置编码
-    properties: # 设置邮件超时时间防止服务器阻塞
-      timeout: 5000
-      connection-timeout: 5000
-      write-timeout: 5000
+#      使用hutool 的email
+#  mail:
+#    host: "smtp.163.com" # 发件服务器地址,不同邮件平台地址不同
+#    port: 456 #常用邮件端口25、109、110、143、465、995、993、994 如果开启了SSL安全则使用对应的端口号，25为非加密端口号
+#    username: li1327674904@163.com #发送邮件的账号
+#    password: NTMFUQUOQZDSWSZH #发送邮件账号的授权码,这里的授权码不是验证码.需要到邮箱
+#    default-encoding: utf-8 #设置编码
+#    properties: # 设置邮件超时时间防止服务器阻塞
+#      timeout: 5000
+#      connection-timeout: 5000
+#      write-timeout: 5000
   thymeleaf:
     cache: false
     mode: LEGACYHTML5 #类型
     prefix: classpath:/templates/ #模板存放的位置
     suffix: .html #模板的后缀
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
 
 
 #  NTMFUQUOQZDSWSZH
@@ -79,3 +86,5 @@ mybatis-plus:
     db-config:
       id-type: auto
   type-aliases-package: com.dashui.naruto.domain
+
+

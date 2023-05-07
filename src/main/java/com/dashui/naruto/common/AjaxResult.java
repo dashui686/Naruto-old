@@ -140,6 +140,7 @@ public class AjaxResult extends HashMap<String, Object>
         return AjaxResult.error("操作失败");
     }
 
+
     /**
      * 返回错误消息
      * 

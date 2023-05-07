@@ -19,9 +19,9 @@ import About from './profile/about.vue';
 import Protfolio from './profile/portfolio.vue';
 import Blog from './profile/blog.vue';
 import Contact from './profile/contact.vue';
-import Footer from './profile/footer.vue';
+import Footer from '../common//footer.vue';
 import { index } from '@/api/frontend/homePage';
-import Nav from './profile/nav.vue';
+import Nav from '../common/nav.vue';
 import { useRouter, useRoute } from 'vue-router'
 
 const data = reactive({

@@ -8,8 +8,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dashui.naruto.common.AjaxResult;
 import com.dashui.naruto.common.TableDataInfo;
-import com.dashui.naruto.domain.Menu;
-import com.dashui.naruto.service.MenuService;
+import com.dashui.naruto.domain.SystemMenu;
+import com.dashui.naruto.service.SystemMenuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,11 +25,11 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/system/menu")
-public class MenuController extends BaseController {
+public class SystemMenuController extends BaseController {
     /**
      * 服务对象
      */
-    private final MenuService menuService;
+    private final SystemMenuService menuService;
 
     /**
      * 分页查询所有数据
@@ -39,7 +39,7 @@ public class MenuController extends BaseController {
      * @return 所有数据
      */
     @GetMapping("list")
-    public TableDataInfo selectAll(Page<Menu> page, Menu menu) {
+    public TableDataInfo selectAll(Page<SystemMenu> page, SystemMenu menu) {
         return TableDataInfo.build(this.menuService.generatorMenu( this.menuService.page(page, new QueryWrapper<>(menu)).getRecords(),0));
     }
 
@@ -62,7 +62,7 @@ public class MenuController extends BaseController {
      * @return 新增结果
      */
     @PostMapping
-    public AjaxResult insert(@RequestBody Menu menu) {
+    public AjaxResult insert(@RequestBody SystemMenu menu) {
         System.out.println(123);
         return toAjax(this.menuService.save(menu));
     }
@@ -74,7 +74,7 @@ public class MenuController extends BaseController {
      * @return 修改结果
      */
     @PutMapping
-    public AjaxResult update(@RequestBody Menu menu) {
+    public AjaxResult update(@RequestBody SystemMenu menu) {
         return toAjax(this.menuService.updateById(menu));
     }
 
@@ -98,7 +98,7 @@ public class MenuController extends BaseController {
     @GetMapping("treeList")
     public AjaxResult treeList() {
 
-        List<Menu> list = menuService.list();
+        List<SystemMenu> list = menuService.list();
         // 根据parentId构建树形结构
         List<Tree<Integer>> build = TreeUtil.build(list, 0, new TreeNodeConfig().setIdKey("value").setNameKey("label"), (menu, treeItem) -> {
             treeItem.setId(menu.getId());

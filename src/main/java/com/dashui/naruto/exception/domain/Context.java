@@ -1,7 +1,5 @@
 package com.dashui.naruto.exception.domain;
 
-import com.dashui.naruto.exception.base.BaseException;
-
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

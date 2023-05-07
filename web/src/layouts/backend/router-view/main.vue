@@ -47,7 +47,6 @@ const addKeepAliveComponentName = function (keepAliveName: string | undefined) {
 
 onBeforeMount(() => {
     proxy.eventBus.on('onTabViewRefresh', (menu: RouteLocationNormalized) => {
-        console.log("刷新页面");
         state.keepAliveComponentNameList = state.keepAliveComponentNameList.filter((name: string) => menu.meta.keepalive !== name)
         state.componentKey = ''
 
@@ -61,9 +60,6 @@ onBeforeMount(() => {
   
         state.keepAliveComponentNameList = state.keepAliveComponentNameList.filter((name: string) => menu.meta.keepalive !== name)
     })
-
-    console.log(proxy.eventBus)
-
 })
 
 onUnmounted(() => {

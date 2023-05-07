@@ -36,19 +36,18 @@ export interface NavTabs {
 
 export interface AdminInfo {
     id: number
-    username: string
-    nickname: string
+    userName: string
+    nickName: string
     avatar: string
-    lastlogintime: string
-    token: string
+    saToken: string
     refreshToken: string
     super: boolean
 }
 
 export interface UserInfo {
     id: number
-    username: string
-    nickname: string
+    userName: string
+    nickName: string
     email: string
     mobile: string
     gender: number

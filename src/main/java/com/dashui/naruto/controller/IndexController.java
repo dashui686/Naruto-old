@@ -9,7 +9,7 @@ import com.dashui.naruto.common.TableDataInfo;
 import com.dashui.naruto.domain.Blogs;
 import com.dashui.naruto.domain.BlogsComments;
 import com.dashui.naruto.domain.BlogsContent;
-import com.dashui.naruto.mail.domain.SendEmailEntity;
+import com.dashui.naruto.domain.SendEmailEntity;
 import com.dashui.naruto.service.BlogsCommentsService;
 import com.dashui.naruto.service.BlogsContentService;
 import com.dashui.naruto.service.BlogsService;
@@ -17,7 +17,6 @@ import com.dashui.naruto.service.IndexService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -33,7 +32,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("index")
 public class IndexController extends BaseController {
-
 
     private final IndexService indexService;
     private final BlogsService blogsService;
@@ -111,6 +109,7 @@ public class IndexController extends BaseController {
         SendEmailEntity build = SendEmailEntity.SendEmailEntityBuilder.aSendEmailEntity()
                 .withText(message)
                 .withTo("1327674904@qq.com")
+                .withFrom(email)
                 .withSubject("有用户联系").build();
         return toAjax(indexService.sendEmail(build));
     }

@@ -4,103 +4,78 @@
             <div class="section-title">
 				<h2>最新博客</h2>
                 <el-image />
-				<p>出乎意料的是，舒适感并不明显。表妹们分分钟高兴起来。天才已经看尽激怒了春天。</p>
+				<p>学习过程所写的笔记，当然多半是搬运工，便于自己观看，侵必删，陆续整理添加中.......</p>
 			</div>
             <el-row>
-                <el-col :md="8" class="blog-item"
-                    v-for="item in blogs as any"
+                <el-col :md="8" v-if="loading" class="blog-item"
+                    v-for="item in (blogs as any)"
                 >
-
-                    <el-skeleton
-                        :loading="loading"
-                        animated
-                        :throttle="500"
-                    >
-                        <template #template>
-
-                            <div>
-                                <el-skeleton-item variant="image" style="width: 100%; height: 224px" />
-                                <div class="blog-item-text">
-                                    <h3>
-                                        <el-skeleton-item variant="h3" style="width: 50%" />
-                                    </h3>
-                                    <p><el-skeleton-item variant="text" /></p>
-                                    <p><el-skeleton-item variant="text" /></p>
-                                    <p><el-skeleton-item variant="text" /></p>
-                                </div>
-                            </div>
-                            <!-- <div>
-                                <img src="@/assets/images/blog1.jpg" alt="">
-                                <div class="blog-item-text">
-                                    <h3>出乎意料有要求不怎么样</h3>
-                                    <p>快六盲灵出爆。完全对家具的沮丧决定了我的依赖。加短水场肥。</p>
-                                    <h5>2017 年 2 月 7 日 / 由管理员发布</h5>
-                                </div>
-                            </div> -->
-                        </template>
-                        <template #default>
-                            <div>
-                                <router-link :to="{path:'/blogInfo/'+item.id}"  >
-                                    <el-image :src="'https://lidashui.oss-cn-beijing.aliyuncs.com/blogConver.png'">
-                                        <template #error>
-                                            <div class="image-slot">
-                                                <el-icon><icon-picture /></el-icon>
-                                            </div>
-                                        </template>
-                                    </el-image>
-                                    <div class="blog-item-text">
-                                        <h3>{{item.title}}</h3>
-                                        <p>{{ item.description }}</p>
-                                        <h5>{{ item.createTime }} / 由{{item.createBy}}发布</h5>
+                    <div>
+                        <router-link :to="{path:'/blogInfo/'+item.id}"  >
+                            <el-image :src="'https://lidashui.oss-cn-beijing.aliyuncs.com/blogConver.png'">
+                                <template #error>
+                                    <div class="image-slot">
+                                        <el-icon><icon-picture /></el-icon>
                                     </div>
-                                </router-link>
+                                </template>
+                            </el-image>
+                            <div class="blog-item-text">
+                                <h3>{{item.title}}</h3>
+                                <p>{{ item.description }}</p>
+                                <h5>{{ item.createTime }} / 由{{item.createBy}}发布</h5>
                             </div>
+                        </router-link>
+                    </div>
 
-                        </template>
+                </el-col>
+                <el-col :md="8" v-else class="blog-item"
+                    v-for="item in (defaultBlogs as any)"
+                >                 
+                    <el-skeleton
+                            animated
+                            :throttle="500"
+                        >
+                            <template #template>
+                                <div>
+                                    <el-skeleton-item variant="image" style="width: 100%; height: 224px" />
+                                    <div class="blog-item-text">
+                                        <el-skeleton-item variant="h3"/>
+                                        <el-skeleton-item variant="p"/>
+                                        <el-skeleton-item variant="p"/>
+                                        <el-skeleton-item variant="h3"/>
+                                    </div>
+                                </div>
+                            </template>
                     </el-skeleton>
-                    
                 </el-col>
-                <!-- <el-col :md="8" class="blog-item">
-                    <div>
-                        <img src="@/assets/images/blog1.jpg" alt="">
-                        <div class="blog-item-text">
-                            <h3>出乎意料有要求不怎么样</h3>
-                            <p>快六盲灵出爆。完全对家具的沮丧决定了我的依赖。加短水场肥。</p>
-                            <h5>2017 年 2 月 7 日 / 由管理员发布</h5>
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :md="8" class="blog-item">
-                    <div>
-                        <img src="@/assets/images/blog1.jpg" alt="">
-                        <div class="blog-item-text">
-                            <h3>出乎意料有要求不怎么样</h3>
-                            <p>快六盲灵出爆。完全对家具的沮丧决定了我的依赖。加短水场肥。</p>
-                            <h5>2017 年 2 月 7 日 / 由管理员发布</h5>
-                        </div>
-                    </div>
-                </el-col> -->
             </el-row>
             <div class="text-center mt20">
-                <router-link to="/blogPage" class="site-button" >LOAD MORE.</router-link>
-			</div>
+                    <router-link to="/blogPage" class="site-button" >LOAD MORE.</router-link>
+            </div>
         </div>
     </section>
 </template>
 
 <script setup lang="ts">
 import { Picture as IconPicture } from '@element-plus/icons-vue'
-const loading = ref(true);
+
 const props = defineProps({
     blogs:{
         type: Array
     }
 });
 
-nextTick(()=>{
-    loading.value = false;
-})
 const {blogs} = toRefs(props);
+const defaultBlogs = ref([0,1,2])
+
+
+const loading = computed(()=>{
+    console.log(blogs!.value!.length);
+    if(blogs!.value != null && blogs!.value != undefined && blogs!.value!.length > 0){return true;}
+    
+    return false;
+
+});
 
 </script>
 

@@ -6,7 +6,8 @@ import cn.hutool.core.lang.tree.TreeNodeConfig;
 import cn.hutool.core.lang.tree.TreeUtil;
 import com.alibaba.fastjson2.JSON;
 import com.dashui.naruto.domain.Menu;
-import com.dashui.naruto.service.MenuService;
+import com.dashui.naruto.domain.SystemMenu;
+import com.dashui.naruto.service.SystemMenuService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,11 +18,11 @@ import java.util.List;
 class NarutoApplicationTests {
 
     @Autowired
-    MenuService menuService;
+    SystemMenuService menuService;
 
     @Test
     void contextLoads() {
-        List<Menu> list = menuService.list();
+        List<SystemMenu> list = menuService.list();
 
         // 根据parentId构建树形结构
         List<Tree<Integer>> build = TreeUtil.build(list, 0, new TreeNodeConfig().setIdKey("value").setNameKey("label"), (menu, treeItem) -> {

@@ -14,7 +14,10 @@ import mitt from 'mitt'
 //引入echarts
 import * as echarts from 'echarts';
 //  引入 markdownEditor
-import VueMarkdownEditor from '@/utils/markDown/mdEditor';
+// import VueMarkdownEditor from '@/utils/markDown/mdEditor';
+// import VueMarkdownPreview from '@/utils/markDown/mdPreview';
+
+import {VueMarkdownEditor,VueMarkdownPreview} from '@/utils/markDown';
 
 loadCss("//at.alicdn.com/t/c/font_3985254_zgokuvy04c.css");
 
@@ -33,5 +36,6 @@ app.config.globalProperties.eventBus = mitt();
 
 // makdown
 app.use(VueMarkdownEditor);
+app.use(VueMarkdownPreview);
 
 app.mount('#app')

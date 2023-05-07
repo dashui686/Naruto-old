@@ -93,13 +93,13 @@
   
   // 表单验证规则
   const rules = reactive<FormRules>({
-      title: [
-          { required: true, message: '请输入标题', trigger: 'blur' },
+      name: [
+          { required: true, message: '请输入名称', trigger: 'blur' },
       ],
-      path: [
+      sort: [
           {
           required: true,
-          message: '请输入路径',
+          message: '请输入排序',
           trigger: 'blur',
           },
       ],

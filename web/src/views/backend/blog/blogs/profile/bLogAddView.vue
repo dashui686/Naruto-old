@@ -135,7 +135,6 @@ const submitForm = ()=>{
 }
 
 const openSubmit=()=>{
-    console.log(blogconfig.formValue.title.length);
     if(blogconfig.formValue.title == '' ||  blogconfig.formValue.title.length <= 5){
         ElNotification({
             message: "请输入标题并且标题必须大于五个字符",

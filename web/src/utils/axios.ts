@@ -30,8 +30,9 @@ const loadingInstance: LoadingInstance = {
  */
 export const getUrl = (): string => {
     const value: string = import.meta.env.VITE_AXIOS_BASE_URL as string
-    const prot: number = import.meta.env.VITE_AXIOS_BASE_PROT as number
-    return value == 'getCurrentDomain' ? window.location.protocol + '//' + window.location.host+':'+prot : value
+    let port: number = import.meta.env.VITE_AXIOS_BASE_PROT as number
+    return value == 'getCurrentDomain' ? window.location.protocol + '//' + window.location.host+':'+port: value
+    // return 'http://127.0.0.1:8032';
 }
 
 /*
@@ -93,7 +94,7 @@ function createAxios(axiosConfig: AxiosRequestConfig, options: Options = {}, loa
             // 自动携带token
             if (config.headers) {
                 const token = adminInfo.getToken()
-                if (token) (config.headers as anyObj).batoken = token
+                if (token) (config.headers as anyObj).saToken = token
                 const userToken = options.anotherToken || userInfo.getToken()
                 if (userToken) (config.headers as anyObj)['ba-user-token'] = userToken
             }
@@ -112,13 +113,26 @@ function createAxios(axiosConfig: AxiosRequestConfig, options: Options = {}, loa
             options.loading && closeLoading(options) // 关闭loading
             if (response.config.responseType == 'json') {
                 if (response.data && response.data.code !== 200) {
-                    if (response.data.code == 500) {
+                    if (response.data.code == 502) {
                         if (!window.tokenRefreshing) {
                             window.tokenRefreshing = true
-                            return refreshToken()
+
+                            if (isAdminApp()) {
+                                adminInfo.removeToken()
+                                if (router.currentRoute.value.name != 'adminLogin') {
+                                    router.push({ name: 'adminLogin' })
+                                } else {
+                                    response.headers.batoken = ''
+                                    window.requests.forEach((cb) => cb('', 'admin-refresh'))
+                                    window.requests = []
+                                }
+                            }
+                            window.tokenRefreshing = false
+
+/*                             return refreshToken()
                                 .then((res) => {
                                     if (res.data.type == 'admin-refresh') {
-                                        adminInfo.setToken(res.data.token, 'token')
+                                        adminInfo.setToken(res.data.token, 'saToken')
                                         response.headers.batoken = `${res.data.token}`
                                         window.requests.forEach((cb) => cb(res.data.token, 'admin-refresh'))
                                     } else if (res.data.type == 'user-refresh') {
@@ -157,6 +171,8 @@ function createAxios(axiosConfig: AxiosRequestConfig, options: Options = {}, loa
                                 .finally(() => {
                                     window.tokenRefreshing = false
                                 })
+ */
+                                
                         } else {
                             return new Promise((resolve) => {
                                 // 用函数形式将 resolve 存入，等待刷新后再执行

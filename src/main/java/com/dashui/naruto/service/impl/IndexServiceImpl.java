@@ -1,14 +1,15 @@
 package com.dashui.naruto.service.impl;
 
-import com.dashui.naruto.exception.EmailException;
-import com.dashui.naruto.exception.domain.Context;
-import com.dashui.naruto.mail.EmailService;
-import com.dashui.naruto.mail.domain.SendEmailEntity;
+import cn.hutool.extra.mail.MailUtil;
+import com.alibaba.fastjson2.util.DateUtils;
+import com.dashui.naruto.domain.SendEmailEntity;
 import com.dashui.naruto.service.IndexService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
-import javax.mail.MessagingException;
+import java.util.Date;
 
 /**
  * @Author dashui
@@ -23,12 +24,21 @@ import javax.mail.MessagingException;
 @RequiredArgsConstructor
 public class IndexServiceImpl implements IndexService {
 
-    private final EmailService emailService;
 
+    private  final  TemplateEngine templateEngine;
 
     @Override
     public boolean sendEmail(SendEmailEntity sendEmailEntity)  {
-        return emailService.sendSimpleEmail(sendEmailEntity);
+        Context context = new Context();
+        //设置模板所需的参数
+        context.setVariable("title","用户联系");
+        context.setVariable("email",sendEmailEntity.getFrom());
+        context.setVariable("text",sendEmailEntity.getText());
+        context.setVariable("date", DateUtils.format(new Date(),"yyyy-MM-dd hh:mm:ss"));
+        //通过模板类将动态参数传入HTML模板,并返回模板内容 参数一:模板名字，参数二：动态参数Web文本
+        String content = templateEngine.process("emailContact",context);
+        MailUtil.send(sendEmailEntity.getTo(), sendEmailEntity.getSubject(), content, true);
+        return true;
     }
 
 }
