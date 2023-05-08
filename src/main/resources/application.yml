@@ -21,9 +21,9 @@ spring:
     name: naruto
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://lidashui.top:3806/blogs?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-    username: root
-    password: dashui686
+    url: jdbc:mysql://XXX.XXX:XXX/blogs?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: XXX
+    password: XXX
     # hikari连接池
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -45,8 +45,8 @@ spring:
 #  mail:
 #    host: "smtp.163.com" # 发件服务器地址,不同邮件平台地址不同
 #    port: 456 #常用邮件端口25、109、110、143、465、995、993、994 如果开启了SSL安全则使用对应的端口号，25为非加密端口号
-#    username: li1327674904@163.com #发送邮件的账号
-#    password: NTMFUQUOQZDSWSZH #发送邮件账号的授权码,这里的授权码不是验证码.需要到邮箱
+#    username: XXX@163.com #发送邮件的账号
+#    password: XXX #发送邮件账号的授权码,这里的授权码不是验证码.需要到邮箱
 #    default-encoding: utf-8 #设置编码
 #    properties: # 设置邮件超时时间防止服务器阻塞
 #      timeout: 5000
