@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.dashui</groupId>
-    <artifactId>naruto</artifactId>
+    <artifactId>Naruto-Server</artifactId>
     <version>1.0.0</version>
     <name>naruto</name>
     <description>naruto</description>
